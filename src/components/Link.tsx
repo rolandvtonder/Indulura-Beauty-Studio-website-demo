@@ -1,5 +1,5 @@
 import type {ComponentProps, ReactNode} from 'react';
-import {navigate} from '../lib/router';
+import {href, navigate} from '../lib/router';
 import {ArrowUpRight} from './icons';
 
 type Props = Omit<ComponentProps<'a'>, 'href'> & {to: string};
@@ -8,7 +8,7 @@ type Props = Omit<ComponentProps<'a'>, 'href'> & {to: string};
 export function Link({to, onClick, ...rest}: Props) {
   return (
     <a
-      href={to}
+      href={href(to)}
       {...rest}
       onClick={(e) => {
         onClick?.(e);

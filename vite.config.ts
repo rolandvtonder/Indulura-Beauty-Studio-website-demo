@@ -32,6 +32,9 @@ function staticRoutes(): Plugin {
 }
 
 export default defineConfig({
+  // '/' locally; the GitHub Pages workflow sets BASE_PATH=/<repo-name>/ because
+  // a project site is served from a sub-folder.
+  base: process.env.BASE_PATH || '/',
   plugins: [react(), tailwindcss(), staticRoutes()],
   build: {
     target: 'es2020',

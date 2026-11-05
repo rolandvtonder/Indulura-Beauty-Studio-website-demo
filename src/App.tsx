@@ -1,7 +1,7 @@
 import {useCallback, useEffect, useRef, useState, type ReactNode} from 'react';
 import {brand} from './content';
 import {useReducedMotion} from './hooks/useReducedMotion';
-import {commit, setTransition, usePath} from './lib/router';
+import {commit, currentPath, setTransition, usePath} from './lib/router';
 import {lockScroll, resetScroll, startScroll} from './lib/scroll';
 import {Curtain, type CurtainPhase} from './components/Curtain';
 import {Footer} from './components/Footer';
@@ -44,7 +44,7 @@ export default function App() {
   useEffect(() => {
     setTransition((to) => {
       if (busy.current) return;
-      if (to === window.location.pathname) {
+      if (to === currentPath()) {
         setOpen(false);
         return;
       }
